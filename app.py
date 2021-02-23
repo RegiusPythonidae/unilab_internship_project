@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, redirect
 from flask_restful import Api
 from security import *
 from flask_jwt import JWT
@@ -26,6 +26,9 @@ api.add_resource(ItemList, "/items")
 api.add_resource(Item, "/items/<int:product_id>")
 api.add_resource(RegisterUser, "/registration")
 
+@app.route("/")
+def home():
+    return redirect("https://github.com/RegiusPythonidae/unilab_internship_project/tree/main"), 302
 
 if __name__ == '__main__':
 
