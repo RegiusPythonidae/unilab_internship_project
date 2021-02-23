@@ -5,6 +5,7 @@ from flask_jwt import JWT
 from resources.item import *
 from resources.user import *
 
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '91939'
 app.config['PROPAGATE_EXCEPTIONS'] = True

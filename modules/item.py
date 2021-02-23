@@ -7,15 +7,17 @@ class ItemModel(db.Model):
     product_id = db.Column(db.Integer, primary_key=True)
     product_name = db.Column(db.String, nullable=False)
     product_price = db.Column(db.String, nullable=False)
+    product_qty = db.Column(db.String, nullable=False)
 
-    def __init__(self, product_id, product_name, product_price):
+    def __init__(self, product_id, product_name, product_price, product_qty):
         self.product_id = product_id
         self.product_name = product_name
         self.product_price = product_price
+        self.product_qty = product_qty
 
     def json(self):
         if self is not None:
-            return {"id": self.product_id, "name": self.product_name, "price": self.product_price}
+            return {"id": self.product_id, "name": self.product_name, "price": self.product_price, "qty": self.product_qty}
 
     @classmethod
     def get_all_items(cls):

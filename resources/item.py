@@ -20,6 +20,7 @@ class Item(Resource):
     product_parser = reqparse.RequestParser()
     product_parser.add_argument('product_name', type=str, required=True, help="Name can not be blank")
     product_parser.add_argument('product_price', type=float, required=True, help="Price can not be blank")
+    product_parser.add_argument('product_qty', type=int, required=True, help="Qty can not be empty")
 
     def get(self, product_id):
         product = ItemModel.find_by_id(product_id)
@@ -36,7 +37,7 @@ class Item(Resource):
             return "A product by such ID already exists", 400
 
         product_details = Item.product_parser.parse_args()
-        new_product = ItemModel(product_id, product_details['product_name'], product_details['product_price'])
+        new_product = ItemModel(product_id, **product_details)
         new_product.save_to_db()
         return "The product has been added to the list", 200
 
@@ -52,6 +53,7 @@ class Item(Resource):
         else:
             product.product_name = product_details['product_name']
             product.product_price = product_details['product_price']
+            product.product_qty = product_details['product_qty']
             product.save_to_db()
             return "Product updated", 200
 
