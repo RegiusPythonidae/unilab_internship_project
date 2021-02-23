@@ -4,7 +4,6 @@ from security import *
 from flask_jwt import JWT
 from resources.item import *
 from resources.user import *
-from db import db
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '91939'
@@ -24,5 +23,4 @@ def home():
     return redirect("https://github.com/RegiusPythonidae/unilab_internship_project/tree/main"), 302
 
 if __name__ == '__main__':
-
     app.run()
